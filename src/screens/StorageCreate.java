@@ -1,86 +1,140 @@
 package screens;
 
-import database.DefaultForm;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 
 public class StorageCreate extends JFrame {
-    private String[] unitMeasurementItems = {"kg", "lote", "unidade", "m", "cm"};
+    private String[] unitMeasurementItems = {"Kilo", "lote", "unidade", "metro", "litros"};
+
+    public StorageCreate(DefaultTableModel tableModel, Object[] rowData) {
+         String name = rowData[0].toString();
+         String description = rowData[1].toString();
+         int quantity = Integer.parseInt(rowData[2].toString());
+         String quantityText = Integer.toString(quantity);
+         double price = Double.parseDouble(rowData[3].toString());
+         String priceText = Double.toString(price);
+         String uniValue = rowData[4].toString();
+         int uniIndex = Integer.parseInt(uniValue);
+         int rowIndex = Integer.parseInt(rowData[5].toString());
 
 
-    public StorageCreate(DefaultTableModel tableModel, int rowIndex, Object[] rowData) {
+        // defaults
+        Font font = new Font("Arial", Font.PLAIN, 32);
+        int heigth = 32;
+        int heigthInput = heigth + 8;
+        int widthLabel = 200;
+        int widthInput = 300;
+        int xInput = 300;
+        int xLabel = 50;
+
         // frame
         JFrame frame = new JFrame("Criar");
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.setSize(500, 500);
+        frame.setSize(800, 600);
         frame.setLayout(null);  // Use null layout for absolute positioning
 
         // name
         JLabel nameLabel = new JLabel("Name:");
-        nameLabel.setBounds(50,50, 150,30);
+        nameLabel.setFont(font);
+        nameLabel.setBounds(xLabel,50, widthLabel, heigth);
         frame.add(nameLabel);
-        JTextField nameInput = new JTextField((String) rowData[0]);
-        nameInput.setBounds(200,50, 100,30);
+        JTextField nameInput = new JTextField(name);
+        nameInput.setFont(font);
+        nameInput.setBounds(xInput,50, widthInput, heigthInput);
         frame.add(nameInput);
 
         // description
         JLabel descriptionLabel = new JLabel("Descricão:");
-        descriptionLabel.setBounds(50,100, 150,30);
+        descriptionLabel.setFont(font);
+        descriptionLabel.setBounds(xLabel,100, widthLabel, heigth);
         frame.add(descriptionLabel);
-        JTextField descriptionInput = new JTextField(rowData[1].toString());
-        descriptionInput.setBounds(200,100, 100,60);
+        JTextField descriptionInput = new JTextField(description);
+        descriptionInput.setFont(font);
+        descriptionInput.setBounds(xInput,100, widthInput, heigthInput);
         frame.add(descriptionInput);
 
         // quantity
         JLabel quantityLabel = new JLabel("Quantidade:");
-        quantityLabel.setBounds(50,200, 100,30);
+        quantityLabel.setBounds(xLabel,200, widthLabel, heigth);
+        quantityLabel.setFont(font);
         frame.add(quantityLabel);
-        JTextField quantityInput = new JTextField(rowData[2].toString());
-        quantityInput.setBounds(200,200, 100,30);
+        JTextField quantityInput = new JTextField(quantityText);
+        quantityInput.setBounds(xInput,200, widthInput, heigthInput);
         frame.add(quantityInput);
+        quantityInput.setFont(font);
 
         // price
         JLabel priceLabel = new JLabel("Valor:");
-        priceLabel.setBounds(50,250, 100,30);
+        priceLabel.setBounds(xLabel,250, widthLabel, heigth);
+        priceLabel.setFont(font);
         frame.add(priceLabel);
-        JTextField priceInput = new JTextField(rowData[2].toString());
-        priceInput.setBounds(200,250, 100,30);
+        JTextField priceInput = new JTextField(priceText);
+        priceInput.setDoubleBuffered(true);
+        priceInput.setFont(font);
+        priceInput.setBounds(xInput,250, widthInput, heigthInput);
         frame.add(priceInput);
 
         // unit of measurement
         JLabel unitMeasurementLabel = new JLabel("Unidade de medida:");
-        unitMeasurementLabel.setBounds(50, 300, 200, 30);
+        unitMeasurementLabel.setBounds(xLabel, 300, widthLabel, heigth);
+        unitMeasurementLabel.setFont(font);
         frame.add(unitMeasurementLabel);
         JComboBox<String> unitMeasurementInput = new JComboBox<>(unitMeasurementItems);
-        String uniValue = rowData[4].toString();
-        int uniIndex = Integer.parseInt(uniValue);
         unitMeasurementInput.setSelectedIndex(uniIndex);
-        unitMeasurementInput.setBounds(200, 300, 100, 30);
+        unitMeasurementInput.setFont(font);
+        unitMeasurementInput.setBounds(xInput, 300, widthInput, heigthInput);
         frame.add(unitMeasurementInput);
 
-        // create calc button
-        JButton saveButton = new JButton("SALVAR");
-        saveButton.setBounds(200,350, 100,30);
-        frame.add(saveButton);
-
-        // Action Listener for Save Button
-        saveButton.addActionListener(new ActionListener() {
+        // button save
+        JButton buttonSave = new JButton("Salvar");
+        JPanel panelButtonSave = new JPanel();
+        buttonSave.setBounds(xInput,350, widthInput, heigthInput);
+        buttonSave.setFont(font);
+        panelButtonSave.add(buttonSave);
+        frame.add(buttonSave);
+        buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Get data from input fields
                 String name = nameInput.getText();
-                int quantity = Integer.parseInt(quantityInput.getText());
                 double price = Double.parseDouble(priceInput.getText());
-                String unit = (String) unitMeasurementInput.getSelectedItem();
-                String description = ""; // You can add a field for description if needed
+                int quantity = Integer.parseInt(quantityInput.getText());
+                String unitIndex = (String) unitMeasurementInput.getSelectedItem();
+                String description = descriptionInput.getText();
 
-                // Add the new row to the table model
-                tableModel.addRow(new Object[]{name, quantity, price, unit, description});
+                Object[] rowData = new Object[]{name, quantity, price, unitIndex, description, rowIndex};
 
-                // Close the create frame
-                frame.dispose();
+                if (rowIndex == -1) {
+                    tableModel.addRow(rowData);
+
+                    frame.dispose();
+                } else {
+                    System.out.println(rowIndex);
+                    tableModel.setValueAt(name, rowIndex, 0);
+                    tableModel.setValueAt(quantity, rowIndex, 1);
+                    tableModel.setValueAt(price, rowIndex, 2);
+                    tableModel.setValueAt(unitIndex, rowIndex, 3);
+                    tableModel.setValueAt(description, rowIndex, 4);
+                }
+
+                frame.setVisible(false);
+            }
+        });
+
+        // button remove
+        JButton buttonRemove = new JButton("Remover");
+        JPanel panelButtonRemove = new JPanel();
+        buttonRemove.setBounds(xInput,450, widthInput, heigthInput);
+        buttonRemove.setFont(font);
+        panelButtonRemove.add(buttonRemove);
+        if (rowIndex != -1) frame.add(buttonRemove);
+        buttonRemove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(rowIndex);
+                tableModel.removeRow(rowIndex);
+                frame.setVisible(false);
             }
         });
 

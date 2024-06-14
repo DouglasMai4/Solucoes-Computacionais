@@ -1,30 +1,32 @@
 package screens;
 
-import database.DefaultForm;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class StorageList extends JFrame {
-    private String[] unitMeasurementItems = {"kg", "lote", "unidade", "m", "cm"};
+    private String[] unitMeasurementItems = {"unidade", "Kilo", "lote",  "metro", "litros"};
+    private String[] columnNames = {"Nome", "Quantidade", "Valor", "Medida", "Descrição"};
 
     public StorageList() {
-        // Create column names
-        String[] columnNames = {"Nome", "Quantidade", "Valor", "Medida", "Descrição"};
-
         // Create data for the table
         Object[][] data = {
                 {"Mangeira", 100, 9.00, unitMeasurementItems[3], "Mangeira de compressor"},
                 {"Pneu", 20, 120.00, unitMeasurementItems[2], "Pneu de fusca preto"},
                 {"Óleo", 50, 60.00, unitMeasurementItems[0],"Óleo de motor"},
         };
+
+        // defaults
+        Font font = new Font("Arial", Font.PLAIN, 32);
+        int heigth = 32;
+
+        setLayout(new GridBagLayout());
 
         // Create the table model
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
@@ -36,54 +38,68 @@ public class StorageList extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set the size of the JFrame
-        setSize(400, 600);
+        setSize(1100, 800);
 
         // Center the JFrame on the screen
         setLocationRelativeTo(null);
 
-        // Create add button
-        JButton ButtonCreate = new JButton("+ Adicionar");
-        ButtonCreate.setBounds(50, 100, 200, 30);
-        ButtonCreate.addActionListener(new ActionListener() {
+        // Create a panel for the button
+        JPanel buttonPanel = new JPanel();
+        JButton buttonCreate = new JButton("+ Adicionar");
+        buttonCreate.setFont(font);
+        buttonCreate.setBounds(100, 100, 100, heigth);
+        buttonPanel.add(buttonCreate);
+        buttonCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                StorageCreate screen = new StorageCreate(tableModel, form);
+                Object[] rowData = new Object[]{"", "", 100, 10.00, 0, -1};
 
-//                screen.setVisible(true);
+                StorageCreate screen = new StorageCreate(tableModel, rowData);
+
+                screen.setVisible(true);
             }
         });
-        add(ButtonCreate);
 
-        // Create the JTable with the table model
+        // create table
         JTable table = new JTable(tableModel);
-        // Add a MouseListener to the table to handle row clicks
+
+        // Set the font size for the header
+        JTableHeader header = table.getTableHeader();
+        header.setFont(font); // Adjust the size as needed
+
+        // Set the font size for cells
+        table.setFont(font); // Adjust the size as needed
+
+        table.setRowHeight(44);
+
+        // show edit form
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Get the selected row index
-                int selectedRow = table.getSelectedRow();
+                int rowIndex = table.getSelectedRow();
 
-                Object uni = table.getValueAt(selectedRow, 3);
+                // Get uni index
+                Object uni = table.getValueAt(rowIndex, 3);
                 String uniLabel = uni.toString();
-
-                int uniIndex = 0;
-
+                int unitIndex = 0;
                 for (int i = 0; i < unitMeasurementItems.length; i++) {
                     String unitMeasurement = unitMeasurementItems[i];
+
                     if (unitMeasurement == uniLabel) {
-                        uniIndex = i;
+                        unitIndex = i;
                     }
+
                 }
 
-                Object[] rowData = {
-                    table.getValueAt(selectedRow, 0), // name
-                    table.getValueAt(selectedRow, 4), // description
-                    table.getValueAt(selectedRow, 1), // quantity
-                    table.getValueAt(selectedRow, 2), // price
-                    uniIndex, // uni.
-                };
+                String name = table.getValueAt(rowIndex, 0).toString();
+                String description = table.getValueAt(rowIndex, 4).toString();
+                int quantity = Integer.parseInt(table.getValueAt(rowIndex, 1).toString());
+                double price = Double.parseDouble(table.getValueAt(rowIndex, 2).toString());
 
-                StorageCreate screen = new StorageCreate(tableModel, selectedRow, rowData);
+                Object[] rowData = new Object[]{name, description, quantity, price, unitIndex, rowIndex};
+
+                StorageCreate screen = new StorageCreate(tableModel, rowData);
 
                 screen.setVisible(true);
             }
@@ -92,7 +108,22 @@ public class StorageList extends JFrame {
         // Add the table to a scroll pane (to support scrolling)
         JScrollPane scrollPane = new JScrollPane(table);
 
-        // Add the scroll pane to the JFrame
-        add(scrollPane, BorderLayout.CENTER);
+        // Constraints for buttonPanel
+        GridBagConstraints gbcButtonPanel = new GridBagConstraints();
+        gbcButtonPanel.gridx = 0;
+        gbcButtonPanel.gridy = 0;
+        gbcButtonPanel.anchor = GridBagConstraints.NORTHEAST; // Align to the top-right corner
+
+        // Constraints for scrollPane
+        GridBagConstraints gbcScrollPane = new GridBagConstraints();
+        gbcScrollPane.gridx = 0;
+        gbcScrollPane.gridy = 1;
+        gbcScrollPane.weightx = 1.0;
+        gbcScrollPane.weighty = 1.0;
+        gbcScrollPane.fill = GridBagConstraints.BOTH;
+
+        // Add components to the frame using BorderLayout
+        add(buttonPanel, gbcButtonPanel);
+        add(scrollPane, gbcScrollPane);
     }
 }
