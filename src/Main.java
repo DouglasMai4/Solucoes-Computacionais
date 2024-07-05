@@ -1,5 +1,12 @@
+import screens.Compra;
+import screens.Compras;
+import screens.OrdemDeServico;
+import screens.TelaInicial;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        TelaInicial screen = new TelaInicial();
+
+        screen.setVisible(true);
     }
 }
