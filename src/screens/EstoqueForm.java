@@ -1,6 +1,6 @@
 package screens;
 
-import database.EstoqueCRUD;
+import database.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

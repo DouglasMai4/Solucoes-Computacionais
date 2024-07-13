@@ -1,14 +1,10 @@
 package screens;
 
-import database.EstoqueCRUD;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class ComprasForm extends JFrame {
     public ComprasForm(DefaultTableModel tableModel, Object[] rowData) {

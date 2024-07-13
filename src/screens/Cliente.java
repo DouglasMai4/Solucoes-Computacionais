@@ -1,11 +1,9 @@
 package screens;
 
-import database.ClienteCRUD;
+import src.database.ClienteCRUD;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

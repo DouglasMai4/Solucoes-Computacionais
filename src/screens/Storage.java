@@ -5,20 +5,17 @@ import database.EstoqueCRUD;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-
 import java.util.List;
 
-public class Estoque extends JFrame {
+public class Storage extends JPanel {
     private String[] unitMeasurementItems = {"unidade", "Kilo", "lote",  "metro", "litros"};
 
-    public Estoque() {
+    public Storage() {
         // defaults
         Font font = new Font("Arial", Font.PLAIN, 32);
         int heigth = 32;
@@ -34,18 +31,6 @@ public class Estoque extends JFrame {
         tableModel.addColumn("Medida");
         tableModel.addColumn("Descrição");
 
-        // Set the title of the JFrame
-        setTitle("Estoque");
-
-        // Set the default close operation
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Set the size of the JFrame
-        setSize(1100, 800);
-
-        // Center the JFrame on the screen
-        setLocationRelativeTo(null);
-
         // get data from server
         EstoqueCRUD database = new EstoqueCRUD();
         List<EstoqueCRUD.Model> data = database.getAll();
@@ -54,12 +39,12 @@ public class Estoque extends JFrame {
             EstoqueCRUD.Model estoque = data.get(i);
 
             Object[] row = {
-                estoque.getId(),
-                estoque.getNome(),
-                estoque.getQuantidade(),
-                estoque.getValor(),
-                estoque.getUni_medida(),
-                estoque.getDescricao(),
+                    estoque.getId(),
+                    estoque.getNome(),
+                    estoque.getQuantidade(),
+                    estoque.getValor(),
+                    estoque.getUni_medida(),
+                    estoque.getDescricao(),
             };
 
             tableModel.addRow(row);

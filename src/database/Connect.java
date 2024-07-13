@@ -2,12 +2,8 @@ package database;
 
 import java.sql.*;
 
-// create docker sql database
-// docker run --name mysqlbd -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql                                                                           ✔
-
 public class Connect {
-//    private static final String url = "jdbc:mysql://localhost:3306/solucoes-computacionais";
-    private static final String url = "jdbc:mysql://avnadmin:AVNS_r0xXz7UG5BuKUAJDVlG@mysql-363592ed-douglasmai4-c43e.h.aivencloud.com:15047/defaultdb?ssl-mode=REQUIRED";
+    private static final String url = "jdbc:mysql://localhost:3306/automotive";
     private static final String username = "root";
     private static final String password = "root";
 
