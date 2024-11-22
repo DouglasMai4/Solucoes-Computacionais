@@ -1,6 +1,6 @@
 package src.screens;
 
-import src.database.EstoqueCRUD;
+import src.database.ClienteCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Objects;
 
-public class Storage extends JPanel {
-    private String[] unitMeasurementItems = {"unidade", "Kilo", "lote",  "metro", "litros"};
+public class Customer extends JPanel {
+    String[] stateItems = new String[] {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 
-    public Storage() {
+    public Customer() {
         // set default layout
         setLayout(new GridBagLayout());
 
@@ -22,26 +23,28 @@ public class Storage extends JPanel {
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Id");
         tableModel.addColumn("Nome");
-        tableModel.addColumn("Quantidade");
-        tableModel.addColumn("Valor");
-        tableModel.addColumn("Medida");
-        tableModel.addColumn("Descrição");
+        tableModel.addColumn("Endereço");
+        tableModel.addColumn("Cidade");
+        tableModel.addColumn("Estado");
+        tableModel.addColumn("CPF");
+        tableModel.addColumn("Telefone");
         JTable table = new JTable(tableModel);
 
         // get database data
-        EstoqueCRUD database = new EstoqueCRUD();
-        List<EstoqueCRUD.Model> data = database.getAll();
+        ClienteCRUD database = new ClienteCRUD();
+        List<ClienteCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            EstoqueCRUD.Model estoque = data.get(i);
+            ClienteCRUD.Model cliente = data.get(i);
 
             Object[] row = {
-                    estoque.getId(),
-                    estoque.getNome(),
-                    estoque.getQuantidade(),
-                    estoque.getValor(),
-                    estoque.getUni_medida(),
-                    estoque.getDescricao(),
+                    cliente.getId(),
+                    cliente.getNome(),
+                    cliente.getEndereco(),
+                    cliente.getCidade(),
+                    cliente.getEstado(),
+                    cliente.getCpf(),
+                    cliente.getTelefone(),
             };
 
             tableModel.addRow(row);
@@ -64,9 +67,18 @@ public class Storage extends JPanel {
         buttonCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] rowData = new Object[]{"", 0, 0, 0, "", -1, -1 };
+                Object[] rowData = new Object[]{
+                    -1, // id
+                    "", // name
+                    "", // address
+                    "", // city
+                    0, // state index
+                    "", // cpf
+                    "", // phone
+                    -1, // row index
+                };
 
-                StorageForm screen = new StorageForm(tableModel, rowData);
+                CustomerForm screen = new CustomerForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }
@@ -78,23 +90,32 @@ public class Storage extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 // Get the selected row index
                 int rowIndex = table.getSelectedRow();
-
                 int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
                 String name = table.getValueAt(rowIndex, 1).toString();
-                int quantity = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
-                double price = Double.parseDouble(table.getValueAt(rowIndex, 3).toString());
-                Object unitMeasurement = table.getValueAt(rowIndex, 3).toString();
-                int unitMeasurementIndex = 0;
-                for (int i = 0; i < unitMeasurementItems.length; i++) {
-                    if (unitMeasurementItems[i] == unitMeasurement) {
-                        unitMeasurementIndex = i;
+                String address = table.getValueAt(rowIndex, 2).toString();
+                String city = table.getValueAt(rowIndex, 3).toString();
+                String stateValue = table.getValueAt(rowIndex, 4).toString();
+                int state = 0;
+                for (int i = 0; i < stateItems.length; i++) {
+                    if (Objects.equals(stateItems[i], stateValue)) {
+                        state = i;
                     }
                 }
-                String description = table.getValueAt(rowIndex, 5).toString();
+                String cpf = table.getValueAt(rowIndex, 5).toString();
+                String phone = table.getValueAt(rowIndex, 6).toString();
 
-                Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
+                Object[] rowData = new Object[]{
+                        id, // id
+                        name, // name
+                        address, // address
+                        city, // city
+                        state, // state
+                        cpf, // cpf
+                        phone, // phone
+                        rowIndex, // row index
+                };
 
-                StorageForm screen = new StorageForm(tableModel, rowData);
+                CustomerForm screen = new CustomerForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }

@@ -12,6 +12,7 @@ nome VARCHAR(40) NOT NULL,
 endereco VARCHAR(255),
 telefone INT,
 cidade VARCHAR(255) NOT NULL,
+cpf VARCHAR(255) NOT NULL,
 estado VARCHAR(2) NOT NULL,
 created_at DATETIME DEFAULT now(),
 updated_at DATETIME);

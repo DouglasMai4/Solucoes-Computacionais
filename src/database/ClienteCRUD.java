@@ -68,18 +68,18 @@ public class ClienteCRUD {
     }
 
     // Method to insert a new contact
-    public int insert(String nome, String endereco, String telefone, String cidade, String estado, String cpf) {
+    public int insert(String name, String address, int phone, String city, String state, String cpf) {
         String sql = "INSERT INTO `clientes` (`nome`, `endereco`, `telefone`, `cidade`, `estado`, `cpf`)" +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            statement.setString(1, nome);
-            statement.setString(2, endereco);
-            statement.setString(3, telefone);
-            statement.setString(4, cidade);
-            statement.setString(5, estado);
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setInt(3, phone);
+            statement.setString(4, city);
+            statement.setString(5, state);
             statement.setString(6, cpf);
 
             int rowsInserted = statement.executeUpdate();
@@ -145,17 +145,17 @@ public class ClienteCRUD {
     }
 
     // Method to update a contact
-    public boolean update(int id, String nome, String endereco, String cidade, String estado, String cpf, String telefone) {
+    public boolean update(int id, String name, String address, int phone, String city, String state, String cpf) {
         String sql = "UPDATE `clientes` SET `nome` = ?, `endereco` = ?, `telefone` = ?, `cidade` = ?, `estado` = ?, `cpf` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, nome);
-            statement.setString(2, endereco);
-            statement.setString(3, telefone);
-            statement.setString(4, cidade);
-            statement.setString(5, estado);
+            statement.setString(1, name);
+            statement.setString(2, address);
+            statement.setInt(3, phone);
+            statement.setString(4, city);
+            statement.setString(5, state);
             statement.setString(6, cpf);
             statement.setInt(7, id); // Set the ID parameter
 

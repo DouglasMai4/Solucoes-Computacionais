@@ -1,7 +1,5 @@
 package src.screens;
 
-import src.screens.Customers;
-
 import javax.swing.*;
 
 public class TelaInicial extends JFrame {
@@ -13,7 +11,7 @@ public class TelaInicial extends JFrame {
 		JTabbedPane tabs = new JTabbedPane();
 		tabs.setBounds(0, 0, 800, 600);
 
-		JPanel Customers = new Customers();
+		JPanel Customers = new Customer();
 		tabs.add("Clientes", Customers);
 
 		JPanel Storage = new Storage();

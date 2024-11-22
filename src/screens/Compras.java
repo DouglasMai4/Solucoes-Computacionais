@@ -52,7 +52,6 @@ public class Compras extends JFrame {
 
 		JButton edit_btn = new JButton("Editar");
 		edit_btn.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		edit_btn.setEnabled(false);
 		edit_btn.setBounds(10, 50, 260, 27);
 		getContentPane().add(edit_btn);
 

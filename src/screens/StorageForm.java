@@ -1,7 +1,5 @@
 package src.screens;
 
-import database.EstoqueCRUD;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -11,7 +9,7 @@ public class StorageForm extends JFrame {
     private String[] unitMeasurementItems = {"Kilo", "lote", "unidade", "metro", "litros"};
 
     public StorageForm(DefaultTableModel tableModel, Object[] rowData) {
-        EstoqueCRUD database = new EstoqueCRUD();
+        src.database.EstoqueCRUD database = new src.database.EstoqueCRUD();
 
         String name = rowData[0].toString();
         String quantity = rowData[1].toString();
@@ -31,62 +29,62 @@ public class StorageForm extends JFrame {
         int xLabel = 50;
 
         // frame
-        JFrame frame = new JFrame("Criar");
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLayout(null);
+        setName("Criar");
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setSize(800, 600);
+        setLayout(null);
 
         // name
         JLabel nameLabel = new JLabel("Name:");
         nameLabel.setFont(font);
         nameLabel.setBounds(xLabel,50, widthLabel, heigth);
-        frame.add(nameLabel);
+        add(nameLabel);
         JTextField nameInput = new JTextField(name);
         nameInput.setFont(font);
         nameInput.setBounds(xInput,50, widthInput, heigthInput);
-        frame.add(nameInput);
+        add(nameInput);
 
         // description
         JLabel descriptionLabel = new JLabel("Descricão:");
         descriptionLabel.setFont(font);
         descriptionLabel.setBounds(xLabel,100, widthLabel, heigth);
-        frame.add(descriptionLabel);
+        add(descriptionLabel);
         JTextField descriptionInput = new JTextField(description);
         descriptionInput.setFont(font);
         descriptionInput.setBounds(xInput,100, widthInput, heigthInput);
-        frame.add(descriptionInput);
+        add(descriptionInput);
 
         // quantity
         JLabel quantityLabel = new JLabel("Quantidade:");
         quantityLabel.setBounds(xLabel,200, widthLabel, heigth);
         quantityLabel.setFont(font);
-        frame.add(quantityLabel);
+        add(quantityLabel);
         JTextField quantityInput = new JTextField(quantity);
         quantityInput.setBounds(xInput,200, widthInput, heigthInput);
-        frame.add(quantityInput);
+        add(quantityInput);
         quantityInput.setFont(font);
 
         // price
         JLabel priceLabel = new JLabel("Valor:");
         priceLabel.setBounds(xLabel,250, widthLabel, heigth);
         priceLabel.setFont(font);
-        frame.add(priceLabel);
+        add(priceLabel);
         JTextField priceInput = new JTextField(price);
         priceInput.setDoubleBuffered(true);
         priceInput.setFont(font);
         priceInput.setBounds(xInput,250, widthInput, heigthInput);
-        frame.add(priceInput);
+        add(priceInput);
 
         // unit of measurement
         JLabel unitMeasurementLabel = new JLabel("Unidade de medida:");
         unitMeasurementLabel.setBounds(xLabel, 300, widthLabel, heigth);
         unitMeasurementLabel.setFont(font);
-        frame.add(unitMeasurementLabel);
+        add(unitMeasurementLabel);
         JComboBox<String> unitMeasurementInput = new JComboBox<>(unitMeasurementItems);
         unitMeasurementInput.setSelectedIndex(unitMeasurementIndex);
         unitMeasurementInput.setFont(font);
         unitMeasurementInput.setBounds(xInput, 300, widthInput, heigthInput);
-        frame.add(unitMeasurementInput);
+        add(unitMeasurementInput);
 
         // button save
         JButton buttonSave = new JButton("Salvar");
@@ -94,7 +92,7 @@ public class StorageForm extends JFrame {
         buttonSave.setBounds(xInput,350, widthInput, heigthInput);
         buttonSave.setFont(font);
         panelButtonSave.add(buttonSave);
-        frame.add(buttonSave);
+        add(buttonSave);
         buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,7 +113,7 @@ public class StorageForm extends JFrame {
 
                     tableModel.addRow(newRow);
 
-                    frame.dispose();
+                    dispose();
                 } else {
                     database.update(id, name, quantity, price, unit, description);
 
@@ -127,7 +125,7 @@ public class StorageForm extends JFrame {
                     tableModel.setValueAt(description, rowIndex, 5);
                 }
 
-                frame.setVisible(false);
+                setVisible(false);
             }
         });
 
@@ -137,17 +135,17 @@ public class StorageForm extends JFrame {
         buttonRemove.setBounds(xInput,450, widthInput, heigthInput);
         buttonRemove.setFont(font);
         panelButtonRemove.add(buttonRemove);
-        if (rowIndex != -1) frame.add(buttonRemove);
+        if (rowIndex != -1) add(buttonRemove);
         buttonRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 database.delete(rowIndex);
                 tableModel.removeRow(rowIndex);
-                frame.setVisible(false);
+                setVisible(false);
             }
         });
 
         // show frame
-        frame.setVisible(true);
+        setVisible(true);
     }
 }
