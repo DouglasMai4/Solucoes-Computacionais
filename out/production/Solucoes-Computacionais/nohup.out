@@ -1,0 +1,78 @@
+[0.003s][warning][cds] Archived non-system classes are disabled because the java.system.class.loader property is specified (value = "com.intellij.util.lang.PathClassLoader"). To use archived non-system classes, this property must not be set
+[0.005s][warning][cds] Archived non-system classes are disabled because the java.system.class.loader property is specified (value = "com.intellij.util.lang.PathClassLoader"). To use archived non-system classes, this property must not be set
+2024-11-22 16:40:05,269 [    306]   WARN - c.i.o.u.r.overrides - Conflicting registry key definition for key kotlin.mpp.tests.force.gradle: it was defined by plugin org.jetbrains.kotlin but redefined by plugin org.jetbrains.kotlin. Consider adding overrides="true" for one of the plugins, see the documentation for com.intellij.openapi.util.registry.RegistryKeyBean.overrides for more details.
+2024-11-22 16:40:05,357 [    394]   WARN - #c.i.o.e.i.FontFamilyServiceImpl - Couldn't access required runtime API, will fall back to basic logic of font selection
+2024-11-22 16:40:06,408 [   1445]   WARN - #c.i.s.ComponentManagerImpl - `preload=NOT_HEADLESS` must be used only for core services (service=org.jetbrains.kotlin.idea.search.refIndex.KotlinCompilerReferenceIndexService, plugin=org.jetbrains.kotlin)
+2024-11-22 16:40:06,408 [   1445]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=org.jetbrains.idea.maven.project.MavenProjectsManagerEx, plugin=org.jetbrains.idea.maven)
+2024-11-22 16:40:06,408 [   1445]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=org.jetbrains.idea.maven.navigator.MavenProjectsNavigator, plugin=org.jetbrains.idea.maven)
+2024-11-22 16:40:06,409 [   1446]   WARN - #c.i.s.ComponentManagerImpl - `preload=TRUE` must be used only for core services (service=org.jetbrains.idea.maven.tasks.MavenShortcutsManager, plugin=org.jetbrains.idea.maven)
+2024-11-22 16:40:06,542 [   1579]   WARN - #o.j.p.t.TextMateService - Cannot find referenced file `./syntaxes/asp-vb-net.tmLanguage.json` in bundle `/usr/share/idea/plugins/textmate/lib/bundles/vb`
+2024-11-22 16:40:06,795 [   1832]   WARN - #c.i.u.j.JBCefApp - JCefAppConfig.class is not from a JBR module, url: jar:file:/usr/share/idea/lib/lib.jar!/com/jetbrains/cef/JCefAppConfig.class (Use JBR bundled with the IDE)
+2024-11-22 16:40:07,917 [   2954]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:07,924 [   2961]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:07,930 [   2967]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:07,934 [   2971]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:07,957 [   2994]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:07,989 [   3026]   WARN - #c.i.u.t.AbstractTreeNodeVisitor - unexpected component class com.intellij.ide.util.treeView.CachedTreePresentationNode
+2024-11-22 16:40:08,029 [   3066]   WARN - #c.i.o.a.Application - issue detected: ide.script.launcher.used (ignored)
+ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
+2024-11-22 16:40:27,923 [  22960]   WARN - #c.i.u.x.Binding - No accessors for org.jetbrains.kotlin.cli.common.arguments.InternalArgument. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-11-22 16:45:07,270 [ 302307]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 16:45:09,239 [ 304276]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: _octo=GH1.1.413487861.1732304709; Path=/; Domain=github.com; Expires=Sat, 22 Nov 2025 19:45:09 GMT; Secure; SameSite=Lax". Invalid 'expires' attribute: Sat, 22 Nov 2025 19:45:09 GMT
+2024-11-22 16:45:09,240 [ 304277]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: logged_in=no; Path=/; Domain=github.com; Expires=Sat, 22 Nov 2025 19:45:09 GMT; HttpOnly; Secure; SameSite=Lax". Invalid 'expires' attribute: Sat, 22 Nov 2025 19:45:09 GMT
+2024-11-22 16:45:09,839 [ 304876]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: _octo=GH1.1.2049735637.1732304709; Path=/; Domain=github.com; Expires=Sat, 22 Nov 2025 19:45:09 GMT; Secure; SameSite=Lax". Invalid 'expires' attribute: Sat, 22 Nov 2025 19:45:09 GMT
+2024-11-22 16:45:09,839 [ 304876]   WARN - org.apache.http.client.protocol.ResponseProcessCookies - Invalid cookie header: "Set-Cookie: logged_in=no; Path=/; Domain=github.com; Expires=Sat, 22 Nov 2025 19:45:09 GMT; HttpOnly; Secure; SameSite=Lax". Invalid 'expires' attribute: Sat, 22 Nov 2025 19:45:09 GMT
+2024-11-22 16:49:34,989 [ 570026]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 16:51:49,519 [ 704556]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 16:53:20,163 [ 795200]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: granular trajectory is not yet available
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-22 16:53:20,465 [ 795502]   WARN - #com.github.weisj.jsvg.parser.NodeMap - unsupported RDF
+2024-11-22 16:53:20,465 [ 795502]   WARN - #com.github.weisj.jsvg.parser.NodeMap - unsupported path-effect
+2024-11-22 16:53:20,465 [ 795502]   WARN - #com.github.weisj.jsvg.parser.NodeMap - unsupported path-effect
+2024-11-22 16:53:20,465 [ 795502]   WARN - #com.github.weisj.jsvg.parser.NodeMap - unsupported path-effect
+2024-11-22 16:53:20,466 [ 795503]   WARN - #com.github.weisj.jsvg.parser.NodeMap - unsupported namedview
+2024-11-22 16:54:51,317 [ 886354]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+imDefLkup.c,419: The application disposed a key event with 9744378 serial.
+2024-11-22 16:55:37,632 [ 932669]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:24:23,683 [2658720]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.platform.feedback.impl.state.DontShowAgainFeedbackState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-11-22 17:24:23,690 [2658727]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.platform.feedback.impl.state.CommonFeedbackSurveysState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-11-22 17:25:56,180 [2751217]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:26:13,745 [2768782]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error refreshing context
+io.grpc.StatusException: UNKNOWN: invalid position (row 7, col 0): line 7 out of range [0, 1)
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Opening in existing browser session.
+2024-11-22 17:27:44,003 [2859040]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:28:50,737 [2925774]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:29:08,335 [2943372]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:29:19,922 [2954959]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:29:23,901 [2958938]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:30:46,950 [3041987]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:31:13,163 [3068200]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:31:38,339 [3093376]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:31:56,892 [3111929]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:32:04,377 [3119414]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:32:24,162 [3139199]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:39:04,878 [3539915]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:43:26,248 [3801285]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-22 17:44:24,827 [3859864]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.toolWindow.ToolWindowLayoutStorageManagerState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
