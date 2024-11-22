@@ -1,10 +1,9 @@
-package screens;
+package src.screens;
 
 import database.EstoqueCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,13 +15,10 @@ public class Storage extends JPanel {
     private String[] unitMeasurementItems = {"unidade", "Kilo", "lote",  "metro", "litros"};
 
     public Storage() {
-        // defaults
-        Font font = new Font("Arial", Font.PLAIN, 32);
-        int heigth = 32;
-
+        // set default layout
         setLayout(new GridBagLayout());
 
-        // Create the table model
+        // create table
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Id");
         tableModel.addColumn("Nome");
@@ -30,8 +26,9 @@ public class Storage extends JPanel {
         tableModel.addColumn("Valor");
         tableModel.addColumn("Medida");
         tableModel.addColumn("Descrição");
+        JTable table = new JTable(tableModel);
 
-        // get data from server
+        // get database data
         EstoqueCRUD database = new EstoqueCRUD();
         List<EstoqueCRUD.Model> data = database.getAll();
         int count = database.getCount();
@@ -50,83 +47,69 @@ public class Storage extends JPanel {
             tableModel.addRow(row);
         }
 
-        // Create a panel for the button
-        JPanel buttonPanel = new JPanel();
-        JButton buttonCreate = new JButton("+ Adicionar");
+        // create table scroll pane
+        JScrollPane tableScrollPane = new JScrollPane(table);
+        GridBagConstraints gbcTableScrollPane = new GridBagConstraints();
+        gbcTableScrollPane.gridx = 0;
+        gbcTableScrollPane.gridy = 1;
+        gbcTableScrollPane.weightx = 1.0;
+        gbcTableScrollPane.weighty = 1.0;
+        gbcTableScrollPane.fill = GridBagConstraints.BOTH;
 
-        buttonCreate.setFont(font);
-        buttonCreate.setBounds(100, 150, 100, heigth);
-        buttonPanel.add(buttonCreate);
+        // create button
+        JButton buttonCreate = new JButton("+ Adicionar");
+        buttonCreate.setBounds(100, 150, 100, 32);
+
+        // add show create form to button
         buttonCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[] rowData = new Object[]{"", 0, 0, 0, "", -1, -1 };
 
-                EstoqueForm screen = new EstoqueForm(tableModel, rowData);
+                StorageForm screen = new StorageForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }
         });
 
-        // create table
-        JTable table = new JTable(tableModel);
-
-        // Set the font size for the header
-        JTableHeader header = table.getTableHeader();
-        header.setFont(font); // Adjust the size as needed
-
-        // Set the font size for cells
-        table.setFont(font); // Adjust the size as needed
-
-        table.setRowHeight(44);
-
-        // show edit form
+        // add show edit form to button
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Get the selected row index
-                int rowIndex = table.getSelectedRow();
+            // Get the selected row index
+            int rowIndex = table.getSelectedRow();
 
-                int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
-                String name = table.getValueAt(rowIndex, 1).toString();
-                int quantity = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
-                double price = Double.parseDouble(table.getValueAt(rowIndex, 3).toString());
-                Object unitMeasurement = table.getValueAt(rowIndex, 3).toString();
-                int unitMeasurementIndex = 0;
-                for (int i = 0; i < unitMeasurementItems.length; i++) {
-                    if (unitMeasurementItems[i] == unitMeasurement) {
-                        unitMeasurementIndex = i;
-                    }
+            int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
+            String name = table.getValueAt(rowIndex, 1).toString();
+            int quantity = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
+            double price = Double.parseDouble(table.getValueAt(rowIndex, 3).toString());
+            Object unitMeasurement = table.getValueAt(rowIndex, 3).toString();
+            int unitMeasurementIndex = 0;
+            for (int i = 0; i < unitMeasurementItems.length; i++) {
+                if (unitMeasurementItems[i] == unitMeasurement) {
+                    unitMeasurementIndex = i;
                 }
-                String description = table.getValueAt(rowIndex, 5).toString();
+            }
+            String description = table.getValueAt(rowIndex, 5).toString();
 
-                Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
+            Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
 
-                EstoqueForm screen = new EstoqueForm(tableModel, rowData);
+            StorageForm screen = new StorageForm(tableModel, rowData);
 
-                screen.setVisible(true);
+            screen.setVisible(true);
             }
         });
 
-        // Add the table to a scroll pane (to support scrolling)
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        // Constraints for buttonPanel
+        // create button pane
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(buttonCreate);
         GridBagConstraints gbcButtonPanel = new GridBagConstraints();
         gbcButtonPanel.gridx = 0;
         gbcButtonPanel.gridy = 0;
-        gbcButtonPanel.anchor = GridBagConstraints.NORTHEAST; // Align to the top-right corner
+        gbcButtonPanel.anchor = GridBagConstraints.NORTHEAST;
 
-        // Constraints for scrollPane
-        GridBagConstraints gbcScrollPane = new GridBagConstraints();
-        gbcScrollPane.gridx = 0;
-        gbcScrollPane.gridy = 1;
-        gbcScrollPane.weightx = 1.0;
-        gbcScrollPane.weighty = 1.0;
-        gbcScrollPane.fill = GridBagConstraints.BOTH;
-
-        // Add components to the frame using BorderLayout
+        // add components
         add(buttonPanel, gbcButtonPanel);
-        add(scrollPane, gbcScrollPane);
+        add(tableScrollPane, gbcTableScrollPane);
     }
 }

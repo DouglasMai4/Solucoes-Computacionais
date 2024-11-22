@@ -1,16 +1,16 @@
-package screens;
+package src.screens;
 
-import database.*;
+import database.EstoqueCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
-public class EstoqueForm extends JFrame {
+public class StorageForm extends JFrame {
     private String[] unitMeasurementItems = {"Kilo", "lote", "unidade", "metro", "litros"};
 
-    public EstoqueForm(DefaultTableModel tableModel, Object[] rowData) {
+    public StorageForm(DefaultTableModel tableModel, Object[] rowData) {
         EstoqueCRUD database = new EstoqueCRUD();
 
         String name = rowData[0].toString();
@@ -34,7 +34,7 @@ public class EstoqueForm extends JFrame {
         JFrame frame = new JFrame("Criar");
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setSize(800, 600);
-        frame.setLayout(null);  // Use null layout for absolute positioning
+        frame.setLayout(null);
 
         // name
         JLabel nameLabel = new JLabel("Name:");
