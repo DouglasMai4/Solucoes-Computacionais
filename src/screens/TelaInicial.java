@@ -1,6 +1,6 @@
 package src.screens;
-
 import src.screens.customer.Customer;
+import src.screens.purchase.Purchase;
 import src.screens.product.Product;
 import src.screens.order.Order;
 
@@ -16,14 +16,17 @@ public class TelaInicial extends JFrame {
 		JTabbedPane tabs = new JTabbedPane();
 		tabs.setBounds(0, 0, 800, 600);
 
-		JPanel Customers = new Customer();
-		tabs.add("Clientes", Customers);
+		JPanel customers = new Customer();
+		tabs.add("Clientes", customers);
 
-		JPanel Product = new Product();
-		tabs.add("Product", Product);
+		JPanel product = new Product();
+		tabs.add("Product", product);
 
-		JPanel Order = new Order();
-		tabs.add("Order", Order);
+		JPanel order = new Order();
+		tabs.add("Order", order);
+
+		JPanel purchase = new Purchase();
+		tabs.add("Purchase", purchase);
 
 		add(tabs);
 	}

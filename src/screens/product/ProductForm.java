@@ -142,7 +142,7 @@ public class ProductForm extends JFrame {
         // button remove
         JButton buttonRemove = new JButton("Remover");
         JPanel panelButtonRemove = new JPanel();
-        buttonRemove.setBounds(xInput,450, widthInput, heigthInput);
+        buttonRemove.setBounds(xInput,400, widthInput, heigthInput);
         buttonRemove.setFont(font);
         panelButtonRemove.add(buttonRemove);
         if (rowIndex != -1) add(buttonRemove);

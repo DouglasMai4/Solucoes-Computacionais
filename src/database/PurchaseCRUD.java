@@ -40,7 +40,7 @@ public class PurchaseCRUD {
             return product_id;
         }
 
-        public int quantity() {
+        public int getQuantity() {
             return quantity;
         }
 
@@ -117,7 +117,7 @@ public class PurchaseCRUD {
 
                 boolean finished = Boolean.parseBoolean(resultSet.getString("finished"));
 
-                float price = Integer.parseInt(resultSet.getString("price"));
+                float price = Float.parseFloat(resultSet.getString("price"));
 
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 Timestamp updatedAt = resultSet.getTimestamp("updated_at");
@@ -133,6 +133,7 @@ public class PurchaseCRUD {
                     createdAt,
                     updatedAt
                 );
+
                 purchaseList.add(purchase);
             }
         } catch (SQLException e) {
@@ -153,7 +154,7 @@ public class PurchaseCRUD {
             statement.setInt(3, quantity);
             statement.setBoolean(4, finished);
             statement.setFloat(5, price);
-            statement.setInt(7, id); // Set the ID parameter
+            statement.setInt(6, id); // Set the ID parameter
 
             int rowsUpdated = statement.executeUpdate();
 

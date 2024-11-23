@@ -1,7 +1,6 @@
-package src.screens.customer;
+package src.screens.purchase;
 
-import src.database.CustomerCRUD;
-import src.screens.customer.CustomerForm;
+import src.database.PurchaseCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,39 +12,38 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Objects;
 
-public class Customer extends JPanel {
+public class Purchase extends JPanel {
     String[] stateItems = new String[] {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 
-    public Customer() {
+    public Purchase() {
         // set default layout
         setLayout(new GridBagLayout());
 
         // create table
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Id");
-        tableModel.addColumn("Nome");
-        tableModel.addColumn("Endereço");
-        tableModel.addColumn("Cidade");
-        tableModel.addColumn("Estado");
-        tableModel.addColumn("CPF");
-        tableModel.addColumn("Telefone");
+        tableModel.addColumn("Id do cliente");
+        tableModel.addColumn("Id do produto");
+        tableModel.addColumn("Quantidade");
+        tableModel.addColumn("Finalizado");
+        tableModel.addColumn("Preço");
+
         JTable table = new JTable(tableModel);
 
         // get database data
-        CustomerCRUD database = new CustomerCRUD();
-        List<CustomerCRUD.Model> data = database.getAll();
+        PurchaseCRUD database = new PurchaseCRUD();
+        List<PurchaseCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            CustomerCRUD.Model customer = data.get(i);
+            PurchaseCRUD.Model customer = data.get(i);
 
             Object[] row = {
                     customer.getId(),
-                    customer.getName(),
-                    customer.getPhone(),
-                    customer.getDocument(),
-                    customer.getAddress(),
-                    customer.getCity(),
-                    customer.getState(),
+                    customer.getCustomer_id(),
+                    customer.getProduct_id(),
+                    customer.getQuantity(),
+                    customer.getFinished(),
+                    customer.getPrice(),
             };
 
             tableModel.addRow(row);
@@ -70,16 +68,15 @@ public class Customer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Object[] rowData = new Object[]{
                     -1, // id
-                    "", // name
-                    -1, // phone
-                    -1, // document
-                    "", // address
-                    "", // city
-                    0, // state index
+                    -1, // customer id
+                    -1, // product id
+                    -1, // quantity
+                    false, // finished
+                    -1, // price
                     -1, // row index
                 };
 
-                src.screens.customer.CustomerForm screen = new src.screens.customer.CustomerForm(tableModel, rowData);
+                PurchaseForm screen = new PurchaseForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }
@@ -92,31 +89,23 @@ public class Customer extends JPanel {
             // Get the selected row index
             int rowIndex = table.getSelectedRow();
             int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
-            String name = table.getValueAt(rowIndex, 1).toString();
-            int phone = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
-            int document = Integer.parseInt(table.getValueAt(rowIndex, 3).toString());
-            String address = table.getValueAt(rowIndex, 4).toString();
-            String city = table.getValueAt(rowIndex, 5).toString();
-            String stateValue = table.getValueAt(rowIndex, 6).toString();
-            int state = 0;
-            for (int i = 0; i < stateItems.length; i++) {
-                if (Objects.equals(stateItems[i], stateValue)) {
-                    state = i;
-                }
-            }
+            int customer_id = Integer.parseInt(table.getValueAt(rowIndex, 1).toString());
+            int product_id = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
+            int quantity = Integer.parseInt(table.getValueAt(rowIndex, 3).toString());
+            boolean finished = Boolean.parseBoolean(table.getValueAt(rowIndex, 4).toString());
+            float price = Float.parseFloat(table.getValueAt(rowIndex, 5).toString());
 
             Object[] rowData = new Object[]{
                 id, // id
-                name, // name
-                phone, // phone
-                document, // document
-                address, // address
-                city, // city
-                state, // state
+                customer_id, // customer id
+                product_id, // product id
+                quantity, // quantity
+                finished, // finished
+                price, // price
                 rowIndex, // row index
             };
 
-            src.screens.customer.CustomerForm screen = new CustomerForm(tableModel, rowData);
+            PurchaseForm screen = new PurchaseForm(tableModel, rowData);
 
             screen.setVisible(true);
             }

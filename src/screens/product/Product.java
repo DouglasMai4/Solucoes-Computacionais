@@ -76,27 +76,27 @@ public class Product extends JPanel {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Get the selected row index
-                int rowIndex = table.getSelectedRow();
+            // Get the selected row index
+            int rowIndex = table.getSelectedRow();
 
-                int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
-                String name = table.getValueAt(rowIndex, 1).toString();
-                int quantity = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
-                double price = Double.parseDouble(table.getValueAt(rowIndex, 3).toString());
-                Object unitMeasurement = table.getValueAt(rowIndex, 3).toString();
-                int unitMeasurementIndex = 0;
-                for (int i = 0; i < unitMeasurementItems.length; i++) {
-                    if (unitMeasurementItems[i] == unitMeasurement) {
-                        unitMeasurementIndex = i;
-                    }
+            int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
+            String name = table.getValueAt(rowIndex, 1).toString();
+            int quantity = Integer.parseInt(table.getValueAt(rowIndex, 2).toString());
+            double price = Double.parseDouble(table.getValueAt(rowIndex, 3).toString());
+            Object unitMeasurement = table.getValueAt(rowIndex, 3).toString();
+            int unitMeasurementIndex = 0;
+            for (int i = 0; i < unitMeasurementItems.length; i++) {
+                if (unitMeasurementItems[i] == unitMeasurement) {
+                    unitMeasurementIndex = i;
                 }
-                String description = table.getValueAt(rowIndex, 5).toString();
+            }
+            String description = table.getValueAt(rowIndex, 5).toString();
 
-                Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
+            Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
 
-                ProductForm screen = new ProductForm(tableModel, rowData);
+            ProductForm screen = new ProductForm(tableModel, rowData);
 
-                screen.setVisible(true);
+            screen.setVisible(true);
             }
         });
 
