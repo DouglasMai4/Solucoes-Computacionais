@@ -1,4 +1,4 @@
-package src.screens;
+package src.screens.product;
 
 import src.database.ProductCRUD;
 
@@ -7,10 +7,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
-public class StorageForm extends JFrame {
+public class ProductForm extends JFrame {
     private String[] unitMeasurementItems = {"Kilo", "lote", "unidade", "metro", "litros"};
 
-    public StorageForm(DefaultTableModel tableModel, Object[] rowData) {
+    public ProductForm(DefaultTableModel tableModel, Object[] rowData) {
         ProductCRUD database = new ProductCRUD();
 
         String name = rowData[0].toString();
@@ -99,12 +99,20 @@ public class StorageForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = nameInput.getText();
-                double price = Double.parseDouble(priceInput.getText());
                 int quantity = Integer.parseInt(quantityInput.getText());
+                float price = Float.parseFloat(priceInput.getText());
                 String unit = (String) unitMeasurementInput.getSelectedItem();
                 String description = descriptionInput.getText();
 
-                Object[] newRow = {id, name, quantity, price, unit, description, rowIndex };
+                Object[] newRow = {
+                    id, // id
+                    name, // name
+                    quantity, // quantity
+                    price, // price
+                    unit, // measurement unit
+                    description, // description
+                    rowIndex // row index
+                };
 
                 if (rowIndex == -1 && id == -1) {
                     int id = database.insert(name, quantity, price, unit, description);

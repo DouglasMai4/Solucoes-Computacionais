@@ -100,7 +100,7 @@ public class OrderCRUD {
 
                 Boolean finished = resultSet.getBoolean("finished");
 
-                Float price = resultSet.getFloat("estado");
+                Float price = resultSet.getFloat("price");
 
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 Timestamp updatedAt = resultSet.getTimestamp("updated_at");

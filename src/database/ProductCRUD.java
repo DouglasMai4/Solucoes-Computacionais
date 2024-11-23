@@ -108,17 +108,15 @@ public class ProductCRUD {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String nome = resultSet.getString("nome");
-                int quantidade = resultSet.getInt("quantidade");
-                float valor = resultSet.getFloat("valor");
-                String uni_medida = resultSet.getString("und_medida");
-                String descricao = resultSet.getString("descricao");
-                // Assuming you have timestamp columns created_at and updated_at
+                String name = resultSet.getString("name");
+                int quantity = resultSet.getInt("quantity");
+                float price = resultSet.getFloat("price");
+                String measurement_unit = resultSet.getString("measurement_unit");
+                String description = resultSet.getString("description");
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 Timestamp updatedAt = resultSet.getTimestamp("updated_at");
 
-                // Create Estoque object and add to list
-                Model products = new Model(id, nome, quantidade, valor, uni_medida, descricao, createdAt, updatedAt);
+                Model products = new Model(id, name, quantity, price, measurement_unit, description, createdAt, updatedAt);
                 productsList.add(products);
             }
         } catch (SQLException e) {

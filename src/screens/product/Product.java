@@ -1,4 +1,4 @@
-package src.screens;
+package src.screens.product;
 
 import src.database.ProductCRUD;
 
@@ -11,10 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class Storage extends JPanel {
+public class Product extends JPanel {
     private String[] unitMeasurementItems = {"unidade", "Kilo", "lote",  "metro", "litros"};
 
-    public Storage() {
+    public Product() {
         // set default layout
         setLayout(new GridBagLayout());
 
@@ -23,7 +23,7 @@ public class Storage extends JPanel {
         tableModel.addColumn("Id");
         tableModel.addColumn("Nome");
         tableModel.addColumn("Quantidade");
-        tableModel.addColumn("Valor");
+        tableModel.addColumn("preço");
         tableModel.addColumn("Medida");
         tableModel.addColumn("Descrição");
         JTable table = new JTable(tableModel);
@@ -33,15 +33,15 @@ public class Storage extends JPanel {
         List<ProductCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            ProductCRUD.Model estoque = data.get(i);
+            ProductCRUD.Model product = data.get(i);
 
             Object[] row = {
-                    estoque.getId(),
-                    estoque.getNome(),
-                    estoque.getQuantidade(),
-                    estoque.getValor(),
-                    estoque.getUni_medida(),
-                    estoque.getDescricao(),
+                    product.getId(),
+                    product.getName(),
+                    product.getQuantity(),
+                    product.getPrice(),
+                    product.getMeasurement_unit(),
+                    product.getDescription(),
             };
 
             tableModel.addRow(row);
@@ -66,7 +66,7 @@ public class Storage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Object[] rowData = new Object[]{"", 0, 0, 0, "", -1, -1 };
 
-                StorageForm screen = new StorageForm(tableModel, rowData);
+                ProductForm screen = new ProductForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }
@@ -94,7 +94,7 @@ public class Storage extends JPanel {
 
                 Object[] rowData = new Object[]{name, quantity, price, unitMeasurementIndex, description, rowIndex, id };
 
-                StorageForm screen = new StorageForm(tableModel, rowData);
+                ProductForm screen = new ProductForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }

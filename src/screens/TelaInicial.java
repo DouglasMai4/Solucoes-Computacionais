@@ -1,5 +1,9 @@
 package src.screens;
 
+import src.screens.customer.Customer;
+import src.screens.product.Product;
+import src.screens.order.Order;
+
 import javax.swing.*;
 
 public class TelaInicial extends JFrame {
@@ -15,8 +19,11 @@ public class TelaInicial extends JFrame {
 		JPanel Customers = new Customer();
 		tabs.add("Clientes", Customers);
 
-		JPanel Storage = new Storage();
-		tabs.add("Storage", Storage);
+		JPanel Product = new Product();
+		tabs.add("Product", Product);
+
+		JPanel Order = new Order();
+		tabs.add("Order", Order);
 
 		add(tabs);
 	}

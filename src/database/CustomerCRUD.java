@@ -63,7 +63,7 @@ public class CustomerCRUD {
         }
 
         public Timestamp getUpdatedAt() {
-            return updatedAt;
+            return null;
         }
     }
 

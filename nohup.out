@@ -1651,3 +1651,225 @@ io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable des
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 08:40:58,175 [5043060] SEVERE - #c.i.o.a.i.ActionUpdater - ToggleUseSoftWrapsInPreviewAction#presentation@ContextToolbar (com.intellij.openapi.editor.actions.ToggleUseSoftWrapsInPreviewAction), actionId=EditorToggleUseSoftWrapsInPreview, text='Soft-Wrap Preview Editor'
+java.lang.IllegalStateException: read job must've been cancelled
+	at com.intellij.openapi.application.rw.CancellableReadActionKt.cancellableReadActionInternal(cancellableReadAction.kt:37)
+	at com.intellij.openapi.application.rw.InternalReadAction.tryReadCancellable(InternalReadAction.kt:93)
+	at com.intellij.openapi.application.rw.InternalReadAction.tryReadAction(InternalReadAction.kt:77)
+	at com.intellij.openapi.application.rw.InternalReadAction.readLoop(InternalReadAction.kt:64)
+	at com.intellij.openapi.application.rw.InternalReadAction.access$readLoop(InternalReadAction.kt:15)
+	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$3.invokeSuspend(InternalReadAction.kt:35)
+	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$3.invoke(InternalReadAction.kt)
+	at com.intellij.openapi.application.rw.InternalReadAction$runReadAction$3.invoke(InternalReadAction.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:62)
+	at kotlinx.coroutines.CoroutineScopeKt.coroutineScope(CoroutineScope.kt:261)
+	at com.intellij.openapi.application.rw.InternalReadAction.runReadAction(InternalReadAction.kt:34)
+	at com.intellij.openapi.application.rw.PlatformReadWriteActionSupport.executeReadAction(PlatformReadWriteActionSupport.kt:38)
+	at com.intellij.openapi.application.ReadWriteActionSupport.executeReadAction$default(ReadWriteActionSupport.kt:15)
+	at com.intellij.openapi.application.CoroutinesKt.constrainedReadActionUndispatched(coroutines.kt:82)
+	at com.intellij.openapi.application.CoroutinesKt.readActionUndispatched(coroutines.kt:69)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$callAction$$inlined$useWithScope$1.invokeSuspend(trace.kt:163)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$callAction$$inlined$useWithScope$1.invoke(trace.kt)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$callAction$$inlined$useWithScope$1.invoke(trace.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:62)
+	at kotlinx.coroutines.BuildersKt__Builders_commonKt.withContext(Builders.common.kt:163)
+	at kotlinx.coroutines.BuildersKt.withContext(Unknown Source)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater.callAction(ActionUpdater.kt:939)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater.access$callAction(ActionUpdater.kt:85)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$success$1$1.invokeSuspend(ActionUpdater.kt:560)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$success$1$1.invoke(ActionUpdater.kt)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$success$1$1.invoke(ActionUpdater.kt)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$$inlined$retryOnAwaitSharedData$1.invokeSuspend(ActionUpdater.kt:939)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$$inlined$retryOnAwaitSharedData$1.invoke(ActionUpdater.kt)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$updateAction$$inlined$retryOnAwaitSharedData$1.invoke(ActionUpdater.kt)
+	at kotlinx.coroutines.intrinsics.UndispatchedKt.startUndispatchedOrReturn(Undispatched.kt:62)
+	at kotlinx.coroutines.BuildersKt__Builders_commonKt.withContext(Builders.common.kt:163)
+	at kotlinx.coroutines.BuildersKt.withContext(Unknown Source)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater.updateAction(ActionUpdater.kt:979)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater.expandGroupChild(ActionUpdater.kt:407)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater.access$expandGroupChild(ActionUpdater.kt:85)
+	at com.intellij.openapi.actionSystem.impl.ActionUpdater$doExpandActionGroup$2$expandResult$1$1.invokeSuspend(ActionUpdater.kt:334)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:111)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:99)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:608)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:873)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:763)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:750)
+2024-11-23 08:40:58,176 [5043061] SEVERE - #c.i.o.a.i.ActionUpdater - IntelliJ IDEA 2024.2.0.2  Build #IC-242.20224.419
+2024-11-23 08:40:58,176 [5043061] SEVERE - #c.i.o.a.i.ActionUpdater - JDK: 21.0.4; VM: OpenJDK 64-Bit Server VM; Vendor: Arch Linux
+2024-11-23 08:40:58,176 [5043061] SEVERE - #c.i.o.a.i.ActionUpdater - OS: Linux
+2024-11-23 08:40:58,176 [5043061] SEVERE - #c.i.o.a.i.ActionUpdater - Last Action: EditorPaste
+2024-11-23 08:40:58,176 [5043061] SEVERE - #c.i.o.a.i.ActionUpdater - Current Command: Create method 'getNome' in 'Model in CustomerCRUD'
+2024-11-23 08:41:21,585 [5066470]   WARN - org.apache.velocity.deprecation - configuration key 'resource.loader' has been deprecated in favor of 'resource.loaders'
+2024-11-23 08:41:21,586 [5066471]   WARN - org.apache.velocity.deprecation - configuration key 'includes.resource.loader.instance' has been deprecated in favor of 'resource.loader.includes.instance'
+2024-11-23 08:42:56,823 [5161708]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.187.52:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.187.52:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 08:57:21,933 [6026818]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.15.241:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.15.241:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 09:30:40,169 [8025054]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 09:32:14,422 [8119307]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:08:25,126 [10290011]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.232.50:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.232.50:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:17:54,597 [10859482]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.43.83:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.43.83:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:21:47,894 [11092779]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:25:01,239 [11286124]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:26:30,832 [11375717]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:28:06,903 [11471788]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.215.38:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.215.38:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:28:20,469 [11485354]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.193.204:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.193.204:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:28:24,509 [11489394]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.247.139:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.247.139:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:28:46,015 [11510900]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:28:51,469 [11516354]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:30:53,656 [11638541]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:31:33,429 [11678314]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:33:11,183 [11776068]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:33:38,368 [11803253]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:34:04,830 [11829715]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:34:19,884 [11844769]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:34:42,539 [11867424]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:35:13,151 [11898036]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:35:28,641 [11913526]   WARN - #c.i.u.i.FilteredIcon - Do not create FilteredIcon for EmptyIcon
+2024-11-23 10:35:33,504 [11918389]   WARN - #c.i.u.i.FilteredIcon - Do not create FilteredIcon for EmptyIcon
+2024-11-23 10:36:47,166 [11992051]   WARN - #c.i.u.i.FilteredIcon - Do not create FilteredIcon for EmptyIcon
+2024-11-23 10:38:16,497 [12081382]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:38:22,637 [12087522]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:39:30,544 [12155429]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:39:41,836 [12166721]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:41:14,059 [12258944]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:42:18,558 [12323443]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:42:21,156 [12326041]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:42:24,857 [12329742]   WARN - #o.j.j.d.IdeaDecompiler - Inconsistent generic signature in method <init> (Ljava/lang/String;I)V in java/awt/Window$Type [java/awt/Window]
+2024-11-23 10:42:26,367 [12331252]   WARN - #o.j.j.d.IdeaDecompiler - Inconsistent generic signature in method <init> (Ljava/lang/String;I)V in java/awt/Component$BaselineResizeBehavior [java/awt/Component]
+2024-11-23 10:43:00,306 [12365191]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:43:03,893 [12368778]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:43:29,706 [12394591]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:44:42,469 [12467354]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:48:58,841 [12723726]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:50:00,735 [12785620]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:50:13,876 [12798761]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:50:34,521 [12819406]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:51:55,181 [12900066]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.43.14:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.43.14:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:52:31,958 [12936843]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:52:57,328 [12962213]   WARN - #com.codeium.intellij.language_server.LanguageServerService - Error getting completions
+io.grpc.StatusException: UNKNOWN: unavailable: rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.119.167:50050: i/o timeout": rpc error: code = Unavailable desc = last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.102.119.167:50050: i/o timeout"
+	at io.grpc.Status.asException(Status.java:548)
+	at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:300)
+	at io.grpc.internal.ClientCallImpl.closeObserver(ClientCallImpl.java:564)
+	at io.grpc.internal.ClientCallImpl.access$100(ClientCallImpl.java:72)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInternal(ClientCallImpl.java:729)
+	at io.grpc.internal.ClientCallImpl$ClientStreamListenerImpl$1StreamClosed.runInContext(ClientCallImpl.java:710)
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37)
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-23 10:53:06,152 [12971037]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:54:26,205 [13051090]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:54:41,465 [13066350]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:55:41,291 [13126176]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:55:58,277 [13143162]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:56:14,078 [13158963]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:56:29,942 [13174827]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 10:57:58,516 [13263401]   WARN - #c.i.u.i.FilteredIcon - Do not create FilteredIcon for EmptyIcon
+2024-11-23 11:00:31,902 [13416787]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:00:38,097 [13422982]   WARN - #c.i.u.i.FilteredIcon - Do not create FilteredIcon for EmptyIcon
+2024-11-23 11:01:33,930 [13478815]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:02:18,651 [13523536]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:03:19,895 [13584780]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:03:43,310 [13608195]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:04:33,915 [13658800]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found
+2024-11-23 11:04:54,275 [13679160]   WARN - #o.j.k.i.s.r.KotlinCompilerReferenceIndexStorage - kotlin-data-container is not found

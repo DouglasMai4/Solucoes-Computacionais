@@ -1,6 +1,6 @@
-package src.screens;
+package src.screens.order;
 
-import src.database.CustomerCRUD;
+import src.database.OrderCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,39 +12,35 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Objects;
 
-public class Customer extends JPanel {
+public class Order extends JPanel {
     String[] stateItems = new String[] {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 
-    public Customer() {
+    public Order() {
         // set default layout
         setLayout(new GridBagLayout());
 
         // create table
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("Id");
-        tableModel.addColumn("Nome");
-        tableModel.addColumn("Endereço");
-        tableModel.addColumn("Cidade");
-        tableModel.addColumn("Estado");
-        tableModel.addColumn("CPF");
-        tableModel.addColumn("Telefone");
+        tableModel.addColumn("Id do cliente");
+        tableModel.addColumn("Descrição");
+        tableModel.addColumn("Finalizado");
+        tableModel.addColumn("Preço");
         JTable table = new JTable(tableModel);
 
         // get database data
-        CustomerCRUD database = new CustomerCRUD();
-        List<CustomerCRUD.Model> data = database.getAll();
+        OrderCRUD database = new OrderCRUD();
+        List<OrderCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            CustomerCRUD.Model cliente = data.get(i);
+            OrderCRUD.Model customer = data.get(i);
 
             Object[] row = {
-                    cliente.getId(),
-                    cliente.getNome(),
-                    cliente.getEndereco(),
-                    cliente.getCidade(),
-                    cliente.getEstado(),
-                    cliente.getCpf(),
-                    cliente.getTelefone(),
+                customer.getId(),
+                customer.getCustomer_id(),
+                customer.getDescription(),
+                customer.getFinished(),
+                customer.getPrice(),
             };
 
             tableModel.addRow(row);
@@ -69,16 +65,14 @@ public class Customer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Object[] rowData = new Object[]{
                     -1, // id
-                    "", // name
-                    "", // address
-                    "", // city
-                    0, // state index
-                    "", // cpf
-                    "", // phone
+                    -1, // customer id
+                    "", // description
+                    false, // finished
+                    -1, // price
                     -1, // row index
                 };
 
-                CustomerForm screen = new CustomerForm(tableModel, rowData);
+                OrderForm screen = new OrderForm(tableModel, rowData);
 
                 screen.setVisible(true);
             }
@@ -88,36 +82,26 @@ public class Customer extends JPanel {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Get the selected row index
-                int rowIndex = table.getSelectedRow();
-                int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
-                String name = table.getValueAt(rowIndex, 1).toString();
-                String address = table.getValueAt(rowIndex, 2).toString();
-                String city = table.getValueAt(rowIndex, 3).toString();
-                String stateValue = table.getValueAt(rowIndex, 4).toString();
-                int state = 0;
-                for (int i = 0; i < stateItems.length; i++) {
-                    if (Objects.equals(stateItems[i], stateValue)) {
-                        state = i;
-                    }
-                }
-                String cpf = table.getValueAt(rowIndex, 5).toString();
-                String phone = table.getValueAt(rowIndex, 6).toString();
+            // Get the selected row index
+            int rowIndex = table.getSelectedRow();
+            int id = Integer.parseInt(table.getValueAt(rowIndex, 0).toString());
+            int customerId = Integer.parseInt(table.getValueAt(rowIndex, 1).toString());
+            String description = table.getValueAt(rowIndex, 2).toString();
+            boolean finished = Boolean.parseBoolean(table.getValueAt(rowIndex, 3).toString());
+            float price = Float.parseFloat(table.getValueAt(rowIndex, 4).toString());
 
-                Object[] rowData = new Object[]{
-                        id, // id
-                        name, // name
-                        address, // address
-                        city, // city
-                        state, // state
-                        cpf, // cpf
-                        phone, // phone
-                        rowIndex, // row index
-                };
+            Object[] rowData = new Object[]{
+                    id, // id
+                    customerId, // customer id
+                    description, // description
+                    finished, // finished
+                    price, // price
+                    rowIndex, // row index
+            };
 
-                CustomerForm screen = new CustomerForm(tableModel, rowData);
+            OrderForm screen = new OrderForm(tableModel, rowData);
 
-                screen.setVisible(true);
+            screen.setVisible(true);
             }
         });
 
