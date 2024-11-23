@@ -6,50 +6,50 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstoqueCRUD {
+public class PurchaseCRUD {
     public class Model {
         private int id;
-        private String nome;
-        private int quantidade;
-        private float valor;
-        private String uni_medida;
-        private String descricao;
+        private int customer_id;
+        private int product_id;
+        private int quantity;
+        private boolean finished;
+        private float price;
         private Timestamp createdAt;
         private Timestamp updatedAt;
 
-        public Model(int id, String nome, int quantidade, float valor, String uni_medida, String descricao, Timestamp createdAt, Timestamp updatedAt) {
+        public Model(int id, int customer_id, int product_id, int quantity, boolean finished, float price, Timestamp createdAt, Timestamp updatedAt) {
             this.id = id;
-            this.nome = nome;
-            this.quantidade = quantidade;
-            this.valor = valor;
-            this.uni_medida = uni_medida;
-            this.descricao = descricao;
+            this.customer_id = customer_id;
+            this.product_id = product_id;
+            this.quantity = quantity;
+            this.finished = finished;
             this.createdAt = createdAt;
             this.updatedAt = updatedAt;
+            this.price = price;
         }
 
         public int getId() {
             return id;
         }
 
-        public String getNome() {
-            return nome;
+        public int getCustomer_id() {
+            return customer_id;
         }
 
-        public int getQuantidade() {
-            return quantidade;
+        public int getProduct_id() {
+            return product_id;
         }
 
-        public float getValor() {
-            return valor;
+        public int quantity() {
+            return quantity;
         }
 
-        public String getUni_medida() {
-            return uni_medida;
+        public boolean getFinished() {
+            return finished;
         }
 
-        public String getDescricao() {
-            return descricao;
+        public float getPrice() {
+            return price;
         }
 
         public Timestamp getCreatedAt() {
@@ -61,19 +61,18 @@ public class EstoqueCRUD {
         }
     }
 
-    // Method to insert a new contact
-    public int insert(String nome, int quantidade, double valor, String uni_medida, String descricao) {
-        String sql = "INSERT INTO `estoque` (`nome`, `quantidade`, `valor`, `und_medida`, `descricao`)" +
+    public int insert(int customer_id, int product_id, int quantity, boolean finished, float price) {
+        String sql = "INSERT INTO `purchases` (`customer_id`, `product_id`, `quantity`, `finished`, `price`)" +
                 "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            statement.setString(1, nome);
-            statement.setInt(2, quantidade);
-            statement.setDouble(3, valor);
-            statement.setString(4, uni_medida);
-            statement.setString(5, descricao);
+            statement.setInt(1, customer_id);
+            statement.setInt(2, product_id);
+            statement.setFloat(3, quantity);
+            statement.setBoolean(4, finished);
+            statement.setFloat(5, price);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -98,11 +97,10 @@ public class EstoqueCRUD {
         }
     }
 
-    // Method to retrieve all contacts
     public List<Model> getAll() {
-        String sql = "SELECT * FROM `estoque`";
+        String sql = "SELECT * FROM `purchases`";
 
-        List<Model> estoqueList = new ArrayList<>();
+        List<Model> purchaseList = new ArrayList<>();
 
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement();
@@ -110,39 +108,52 @@ public class EstoqueCRUD {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String nome = resultSet.getString("nome");
-                int quantidade = resultSet.getInt("quantidade");
-                float valor = resultSet.getFloat("valor");
-                String uni_medida = resultSet.getString("und_medida");
-                String descricao = resultSet.getString("descricao");
-                // Assuming you have timestamp columns created_at and updated_at
+
+                int customer_id = Integer.parseInt(resultSet.getString("customer_id"));
+
+                int product_id = Integer.parseInt(resultSet.getString("product_id"));
+
+                int quantity = Integer.parseInt(resultSet.getString("quantity"));
+
+                boolean finished = Boolean.parseBoolean(resultSet.getString("finished"));
+
+                float price = Integer.parseInt(resultSet.getString("price"));
+
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 Timestamp updatedAt = resultSet.getTimestamp("updated_at");
 
-                // Create Estoque object and add to list
-                Model estoque = new Model(id, nome, quantidade, valor, uni_medida, descricao, createdAt, updatedAt);
-                estoqueList.add(estoque);
+                // Create object and add to list
+                Model purchase = new Model(
+                    id,
+                    customer_id,
+                    product_id,
+                    quantity,
+                    finished,
+                    price,
+                    createdAt,
+                    updatedAt
+                );
+                purchaseList.add(purchase);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return estoqueList;
+        return purchaseList;
     }
 
-    // Method to update a contact
-    public boolean update(int id, String nome, int quantidade, double valor, String uni_medida, String descricao) {
-        String sql = "UPDATE `estoque` SET `nome` = ?, `quantidade` = ?, `valor` = ?, `und_medida` = ?, `descricao` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?";
+    public boolean update(int id, int customer_id, int product_id, int quantity, boolean finished, float price) {
+        String sql = "UPDATE `purchases` SET `customer_id` = ?, `product_id` = ?, `quantity` = ?, `finished` = ?, `price` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, nome);
-            statement.setInt(2, quantidade);
-            statement.setDouble(3, valor);
-            statement.setString(4, uni_medida);
-            statement.setString(5, descricao);
-            statement.setInt(6, id); // Set the ID parameter
+            statement.setInt(1, customer_id);
+            statement.setInt(2, product_id);
+            statement.setInt(3, quantity);
+            statement.setBoolean(4, finished);
+            statement.setFloat(5, price);
+            statement.setInt(7, id); // Set the ID parameter
 
             int rowsUpdated = statement.executeUpdate();
 
@@ -154,9 +165,8 @@ public class EstoqueCRUD {
         }
     }
 
-    // Method to delete a contact
     public boolean delete(int id) {
-        String sql = "DELETE FROM `estoque` WHERE `id` = ?";
+        String sql = "DELETE FROM `purchases` WHERE `id` = ?";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

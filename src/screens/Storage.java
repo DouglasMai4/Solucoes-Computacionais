@@ -1,6 +1,6 @@
 package src.screens;
 
-import src.database.EstoqueCRUD;
+import src.database.ProductCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -29,11 +29,11 @@ public class Storage extends JPanel {
         JTable table = new JTable(tableModel);
 
         // get database data
-        EstoqueCRUD database = new EstoqueCRUD();
-        List<EstoqueCRUD.Model> data = database.getAll();
+        ProductCRUD database = new ProductCRUD();
+        List<ProductCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            EstoqueCRUD.Model estoque = data.get(i);
+            ProductCRUD.Model estoque = data.get(i);
 
             Object[] row = {
                     estoque.getId(),

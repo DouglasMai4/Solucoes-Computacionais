@@ -1,6 +1,6 @@
 package src.screens;
 
-import src.database.ClienteCRUD;
+import src.database.CustomerCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +13,7 @@ public class CustomerForm extends JFrame {
     String[] stateItems = new String[] {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 
     public CustomerForm(DefaultTableModel tableModel, Object[] rowData) {
-        ClienteCRUD database = new ClienteCRUD();
+        CustomerCRUD database = new CustomerCRUD();
 
         setName("Criar");
 

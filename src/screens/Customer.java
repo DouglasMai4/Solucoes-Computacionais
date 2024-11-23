@@ -1,6 +1,6 @@
 package src.screens;
 
-import src.database.ClienteCRUD;
+import src.database.CustomerCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -31,11 +31,11 @@ public class Customer extends JPanel {
         JTable table = new JTable(tableModel);
 
         // get database data
-        ClienteCRUD database = new ClienteCRUD();
-        List<ClienteCRUD.Model> data = database.getAll();
+        CustomerCRUD database = new CustomerCRUD();
+        List<CustomerCRUD.Model> data = database.getAll();
         int count = database.getCount();
         for (int i = 0; i < count; i++) {
-            ClienteCRUD.Model cliente = data.get(i);
+            CustomerCRUD.Model cliente = data.get(i);
 
             Object[] row = {
                     cliente.getId(),

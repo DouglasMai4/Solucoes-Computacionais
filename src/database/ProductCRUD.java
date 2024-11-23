@@ -6,52 +6,50 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteCRUD {
+public class ProductCRUD {
     public class Model {
         private int id;
-        private String nome;
-        private String endereco;
-        private String cidade;
-        private String estado;
+        private String name;
+        private int quantity;
+        private float price;
+        private String measurement_unit;
+        private String description;
         private Timestamp createdAt;
         private Timestamp updatedAt;
-        private String cpf;
-        private String telefone;
 
-        public Model(int id, String nome, String endereco, String cidade, String estado, String telefone, String cpf, Timestamp createdAt, Timestamp updatedAt) {
+        public Model(int id, String name, int quantity, Float price, String measurement_unit, String description, Timestamp createdAt, Timestamp updatedAt) {
             this.id = id;
-            this.nome = nome;
-            this.endereco = endereco;
-            this.cidade = cidade;
-            this.estado = estado;
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;
+            this.measurement_unit = measurement_unit;
+            this.description = description;
             this.createdAt = createdAt;
             this.updatedAt = updatedAt;
-            this.cpf = cpf;
-            this.telefone = telefone;
         }
 
         public int getId() {
             return id;
         }
 
-        public String getNome() {
-            return nome;
+        public String getName() {
+            return name;
         }
 
-        public String getEndereco() {
-            return endereco;
+        public int getQuantity() {
+            return quantity;
         }
 
-        public String getTelefone() {
-            return telefone;
+        public Float getPrice() {
+            return price;
         }
 
-        public String getCidade() {
-            return cidade;
+        public String getMeasurement_unit() {
+            return measurement_unit;
         }
 
-        public String getEstado() {
-            return estado;
+        public String getDescription() {
+            return description;
         }
 
         public Timestamp getCreatedAt() {
@@ -61,26 +59,20 @@ public class ClienteCRUD {
         public Timestamp getUpdatedAt() {
             return updatedAt;
         }
-
-        public String getCpf() {
-            return cpf;
-        }
     }
 
-    // Method to insert a new contact
-    public int insert(String name, String address, int phone, String city, String state, String cpf) {
-        String sql = "INSERT INTO `clientes` (`nome`, `endereco`, `telefone`, `cidade`, `estado`, `cpf`)" +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+    public int insert(String name, int quantity, Float price, String measurement_unit, String description) {
+        String sql = "INSERT INTO `products` (`name`, `quantity`, `price`, `measurement_unit`, `description`)" +
+                "VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, name);
-            statement.setString(2, address);
-            statement.setInt(3, phone);
-            statement.setString(4, city);
-            statement.setString(5, state);
-            statement.setString(6, cpf);
+            statement.setInt(2, quantity);
+            statement.setDouble(3, price);
+            statement.setString(4, measurement_unit);
+            statement.setString(5, description);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -105,11 +97,10 @@ public class ClienteCRUD {
         }
     }
 
-    // Method to retrieve all contacts
     public List<Model> getAll() {
-        String sql = "SELECT * FROM `clientes`";
+        String sql = "SELECT * FROM `products`";
 
-        List<Model> estoqueList = new ArrayList<>();
+        List<Model> productsList = new ArrayList<>();
 
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement();
@@ -117,47 +108,38 @@ public class ClienteCRUD {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-
                 String nome = resultSet.getString("nome");
-
-                String endereco = resultSet.getString("endereco");
-
-                String cidade = resultSet.getString("cidade");
-
-                String estado = resultSet.getString("estado");
-
-                String cpf = resultSet.getString("cpf");
-
-                String telefone = resultSet.getString("telefone");
-
+                int quantidade = resultSet.getInt("quantidade");
+                float valor = resultSet.getFloat("valor");
+                String uni_medida = resultSet.getString("und_medida");
+                String descricao = resultSet.getString("descricao");
+                // Assuming you have timestamp columns created_at and updated_at
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 Timestamp updatedAt = resultSet.getTimestamp("updated_at");
 
-                // Create object and add to list
-                Model cliente = new Model(id, nome, endereco, cidade, estado, telefone, cpf, createdAt, updatedAt);
-                estoqueList.add(cliente);
+                // Create Estoque object and add to list
+                Model products = new Model(id, nome, quantidade, valor, uni_medida, descricao, createdAt, updatedAt);
+                productsList.add(products);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return estoqueList;
+        return productsList;
     }
 
-    // Method to update a contact
-    public boolean update(int id, String name, String address, int phone, String city, String state, String cpf) {
-        String sql = "UPDATE `clientes` SET `nome` = ?, `endereco` = ?, `telefone` = ?, `cidade` = ?, `estado` = ?, `cpf` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?";
+    public boolean update(int id, String name, int quantity, Float price, String measurement_unit, String description) {
+        String sql = "UPDATE `products` SET `name` = ?, `quantity` = ?, `price` = ?, `measurement_unit` = ?, `description` = ?, `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, name);
-            statement.setString(2, address);
-            statement.setInt(3, phone);
-            statement.setString(4, city);
-            statement.setString(5, state);
-            statement.setString(6, cpf);
-            statement.setInt(7, id); // Set the ID parameter
+            statement.setInt(2, quantity);
+            statement.setFloat(3, price);
+            statement.setString(4, measurement_unit);
+            statement.setString(5, description);
+            statement.setInt(6, id); // Set the ID parameter
 
             int rowsUpdated = statement.executeUpdate();
 
@@ -169,9 +151,8 @@ public class ClienteCRUD {
         }
     }
 
-    // Method to delete a contact
     public boolean delete(int id) {
-        String sql = "DELETE FROM `clientes` WHERE `id` = ?";
+        String sql = "DELETE FROM `products` WHERE `id` = ?";
 
         try (Connection connection = Connect.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

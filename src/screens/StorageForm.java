@@ -1,5 +1,7 @@
 package src.screens;
 
+import src.database.ProductCRUD;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -9,7 +11,7 @@ public class StorageForm extends JFrame {
     private String[] unitMeasurementItems = {"Kilo", "lote", "unidade", "metro", "litros"};
 
     public StorageForm(DefaultTableModel tableModel, Object[] rowData) {
-        src.database.EstoqueCRUD database = new src.database.EstoqueCRUD();
+        ProductCRUD database = new ProductCRUD();
 
         String name = rowData[0].toString();
         String quantity = rowData[1].toString();
